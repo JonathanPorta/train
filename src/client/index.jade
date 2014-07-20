@@ -1,0 +1,14 @@
+!!!
+html
+	head
+		title Train
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		link(rel="stylesheet", href="assets/page.css", media="screen")
+		script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js')
+		script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js')
+		script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-route.js')
+		script(src='/socket.io/socket.io.js')
+		script(src='/assets/bundle.js')
+		script(src='/assets/templates.js')
+
+	body(ng:app='train',ng-view)

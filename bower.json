@@ -1,0 +1,16 @@
+{
+  "name": "train",
+  "version": "0.0.0",
+  "authors": [
+    "Jonathan Porta <jonathan@jonathanporta.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "q": "~2.0.0",
+    "require": "*"
+  }
+}

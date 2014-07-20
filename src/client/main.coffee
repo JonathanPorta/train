@@ -1,0 +1,1 @@
+train = require "./module.coffee"

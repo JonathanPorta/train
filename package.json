@@ -1,0 +1,36 @@
+{
+  "name": "train",
+  "version": "0.0.0",
+  "description": "Controll a train from the web. Amazing!",
+  "main": "index.js",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "request": "~2.27.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "browserify": "~2.35",
+    "browserify-shim": "*",
+    "grunt-browserify": "~1.2.4",
+    "caching-coffeeify": "~0.2.0",
+    "q": "~0.9.7",
+    "grunt-contrib-jade": "~0.8.0",
+    "grunt-contrib-less": "~0.7.0",
+    "nconf": "~0.6.7",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-contrib-copy": "~0.4.1"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6.3",
+    "express": "^4.6.1",
+    "grunt-ngjade": "0.0.0",
+    "markdown-js": "0.0.3",
+    "socket.io": "^1.0.6",
+    "underscore": "^1.6.0"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "start": "node --debug src/server/start.js"
+  },
+  "author": "Jonathan Porta",
+  "license": "BSD"
+}

@@ -1,1 +1,16 @@
+input[type="range"] {
+  -webkit-appearance: none !important;
+  border: 1px inset white;
+  cursor: pointer;
+  width: 350px;
+  height: 25px;
+  background: -webkit-linear-gradient(left, rgba(0, 255, 0, 0.8), yellow 40%, red 50%, yellow 60%, rgba(0, 255, 0, 0.8));
+}
 
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #666;
+  height: 50px;
+  opacity: 0.5;
+  width: 10px;
+}

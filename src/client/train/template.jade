@@ -1,11 +1,10 @@
-.navbar.navbar-inverse(role="navigation")
-  .container
-    .navbar-header
-      a.navbar-brand Train
 .container
-  form
-    label Speed
-      input(type='number', ng-model='speed',ng-change="onChange()", min=-10, max=10, step=1)
+  .train
+    gears(speed='speed')
+    speedometer(speed='speed')
+    slider(speed='speed', on-speed-change="onChange(speed)", interval='interval')
+    keyboard(on-speed-change="onChange(amount)", accelerate='keys.accelerate', decelerate='keys.decelerate', brake='keys.brake', interval='interval')
+
 footer
   .container
     :markdown

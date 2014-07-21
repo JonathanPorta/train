@@ -8,14 +8,16 @@ module.exports = (grunt)->
 			'$1'
 		)
 		.replace(
-			/^src\/client\/(.*)\/directive.jade$/
-			'$1/widget'
+			/^src\/client\/(.*)\/directives\/(.*).jade$/
+			'$1/$2/widget'
 		)
 
 	grunt.Config =
 		browserify:
 			dev:
-				files: "build/bundle.js": ["src/client/main.coffee"]
+				files: "build/bundle.js": [
+					"src/client/main.coffee"
+				]
 				options:
 					debug: true
 					transform: [
@@ -34,18 +36,23 @@ module.exports = (grunt)->
 					processName:jadeTemplateId
 				files:[{
 					expand: false
-					src: ["src/client/**/**/template.jade", "src/client/**/**/directive.jade"]
+					src: [
+						"src/client/**/**/template.jade"
+						"src/client/**/**/directives/*.jade"
+					]
 					dest: "build/templates.js"
 				}]
 
 		less:
 			page:
 				options:
-					paths:[
+					paths: [
 						"bower_components/bootstrap/less"
 					]
 				files:
-					"build/page.css":["src/client/page.less"]
+					"build/page.css": [
+						"src/client/page.less"
+					]
 
 #		karma:
 #			unit:

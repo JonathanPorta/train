@@ -10,7 +10,17 @@ angular.module('train').controller "train", ($scope, storage)->
 
   $scope.speed = 0
 
+  $scope.setSpeed = (speed) ->
+
+      $scope.speed = speed
+
+      # Fire off an event to Node.js to let it know that the speed changed.
+      storage.emit 'train.speed',
+        speed: $scope.speed
+
   $scope.onChange = (amount) ->
+    # Sanitize input a bit.
+    amount = parseInt amount
     # Amount of 0 is a special case indicating braking action.
     if amount is 0
       console.log "Brakes!"
@@ -21,10 +31,8 @@ angular.module('train').controller "train", ($scope, storage)->
       console.log "Regulated to #{ newSpeed }"
 
     $scope.$apply ->
-      $scope.speed = newSpeed
+      $scope.setSpeed newSpeed
 
-    storage.emit 'train.speed',
-      speed: $scope.speed
 
   $scope.governor = (attemptedSpeed) ->
     newSpeed = attemptedSpeed

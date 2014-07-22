@@ -26,9 +26,7 @@ angular.module('train').directive "slider", ($templateCache)->
 
 		controller: ($scope, storage, $filter)->
 			console.log "slider Directive - Controller Function"
-			# $scope.speed = 5
-			# $scope.onChange = ->
-			# 	console.log "slider onchange!", $scope.speed
-			# 	$scope.onSpeedChange
-			# 		speed: $scope.speed
-			#Default config options
+			$scope.onChange = ->
+				console.log "slider onchange!", $scope.speed
+				$scope.onSpeedChange
+					speed: $scope.speed

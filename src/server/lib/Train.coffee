@@ -30,7 +30,7 @@ module.exports = class Train
 
     realValue = Math.floor((maxSpeed / maxScaleSpeed) * val)
 
-    console.log "Converted speed of #{ val } to #{ realValue }"
+    # console.log "Converted speed of #{ val } to #{ realValue }"
 
     realValue
 

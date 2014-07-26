@@ -55,11 +55,12 @@ module.exports = class GPIOPin
       return throw new Error "Unsupported pin number: #{ @pinNumber }"
 
   _execute: (cmd) ->
-    console.log "Executing cmd: #{ cmd }"
+    # console.log "Executing cmd: #{ cmd }"
     return if process.env.NODE_ENV is "development"
 
     exec cmd, (err, stdout, stderr) =>
-      console.log "GPIO Pin No: #{ @pinNumber } Mode: #{ @pinMode } ", err, stdout, stderr
+      if err
+        console.log "Error excuting command.", err, stdout, stderr
 
   pwm: (val) ->
     unless val <= @pwmMaximum and val >= @pwmMinimum

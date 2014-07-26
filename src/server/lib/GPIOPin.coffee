@@ -51,13 +51,14 @@ module.exports = class GPIOPin
 
     @options = _.defaults options, defaults
 
-    # if @pinMode isnt in @supportedModes
-    #   return throw new Error "Unsupported pin mode: #{ @pinMode }"
-
     if @pinNumber not of @supportedPins
       return throw new Error "Unsupported pin number: #{ @pinNumber }"
 
-    @systemCallback = (err, stdout, stderr) ->
+  _execute: (cmd) ->
+    console.log "Executing cmd: #{ cmd }"
+    return if process.env.NODE_ENV is "development"
+
+    exec cmd, (err, stdout, stderr) =>
       console.log "GPIO Pin No: #{ @pinNumber } Mode: #{ @pinMode } ", err, stdout, stderr
 
   pwm: (val) ->
@@ -65,23 +66,17 @@ module.exports = class GPIOPin
       return throw new Error "PWM value is out of range: #{ val }"
 
     cmd = "gpio mode #{ @pinNumber } pwm"
-    console.log "Executing cmd: #{ cmd }"
-    # exec cmd
+    @_execute cmd
 
     cmd = "gpio pwm #{ @pinNumber } #{ val }"
-    console.log "Executing cmd: #{ cmd }"
-    # exec cmd, @systemCallback
+    @_execute cmd
 
   out: (val) ->
     unless val <= @outMaximum and val >= @outMinimum
       return throw new Error "Output value of '#{ val }' is out of range. Min: #{ @outMinimum }, Max: #{ @outMaximum }"
 
     cmd = "gpio mode #{ @pinNumber } out"
-    console.log "Executing cmd: #{ cmd }"
-    # exec cmd
+    @_execute cmd
 
     cmd = "gpio write #{ @pinNumber } #{ val }"
-    console.log "Executing cmd: #{ cmd }"
-    # exec cmd, @systemCallback
-
-
+    @_execute cmd

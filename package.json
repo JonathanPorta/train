@@ -29,7 +29,8 @@
   },
   "scripts": {
     "test": "grunt test",
-    "start": "node --debug src/server/start.js"
+    "start": "grunt ; node src/server/start.js",
+    "debug":"node --debug src/server/start.js"
   },
   "author": "Jonathan Porta",
   "license": "BSD"

@@ -12,11 +12,11 @@ angular.module('train').controller "train", ($scope, storage)->
 
   $scope.setSpeed = (speed) ->
 
-      $scope.speed = speed
+    $scope.speed = speed
 
-      # Fire off an event to Node.js to let it know that the speed changed.
-      storage.emit 'train.speed',
-        speed: $scope.speed
+    # Fire off an event to Node.js to let it know that the speed changed.
+    storage.emit 'train.speed',
+      speed: $scope.speed
 
   $scope.onChange = (amount) ->
     # Sanitize input a bit.
@@ -33,7 +33,6 @@ angular.module('train').controller "train", ($scope, storage)->
     $scope.$apply ->
       $scope.setSpeed newSpeed
 
-
   $scope.governor = (attemptedSpeed) ->
     newSpeed = attemptedSpeed
 
@@ -43,4 +42,4 @@ angular.module('train').controller "train", ($scope, storage)->
       # Remember if it's a negative value.
       newSpeed = if attemptedSpeed < 0 then (-1 * newSpeed) else newSpeed
 
-    return newSpeed
+    newSpeed

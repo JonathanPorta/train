@@ -1,16 +1,10 @@
 Train = require "./lib/Train"
 path = require "path"
 express = require "express"
-nconf = require "nconf"
 
 root = path.join __dirname, "..", ".."
 
-nconf.argv()
-	.env()
-	.file
-		file: path.join root, 'server.json'
-	.defaults
-		port: 3000
+port = process.env.PORT || 3000
 
 train = new Train
 
@@ -44,7 +38,6 @@ io.on "connection", (socket) ->
 
 module.exports = do ->
 	serve: ->
-		port = nconf.get 'port'
 		server.listen port
 		console.log "Train Server listening on port #{port}"
 	stop: ->

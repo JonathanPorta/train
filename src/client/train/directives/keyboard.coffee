@@ -28,12 +28,15 @@ angular.module('train').directive "keyboard", ($templateCache, $filter)->
 					keycode = e.which
 					console.log "KeyDown: #{ keycode }", e
 					if keycode in scope.accelerate
+						e.preventDefault()
 						scope.onSpeedChange
-							amount: scope.interval
+							amount: parseInt(scope.interval)
 					else if keycode in scope.decelerate
+						e.preventDefault()
 						scope.onSpeedChange
-							amount: (-1 * scope.interval)
+							amount: (-1 * parseInt(scope.interval))
 					else if keycode in scope.brake
+						e.preventDefault()
 						scope.onSpeedChange
 							amount: 0
 

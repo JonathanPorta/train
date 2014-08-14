@@ -27,14 +27,14 @@ angular.module('train').controller "train", ($scope, storage)->
       newSpeed = 0
     else
       console.log "Current speed: #{ $scope.speed }. Attempting to change speed by #{ amount }."
-      newSpeed = $scope.governor($scope.speed + amount)
+      newSpeed = $scope.governor(parseInt($scope.speed) + parseInt(amount))
       console.log "Regulated to #{ newSpeed }"
 
     $scope.$apply ->
       $scope.setSpeed newSpeed
 
   $scope.governor = (attemptedSpeed) ->
-    newSpeed = attemptedSpeed
+    newSpeed = parseInt(attemptedSpeed)
 
     # Ensure we are within range, whether positive or negative.
     if Math.abs(attemptedSpeed) > $scope.range
@@ -43,3 +43,8 @@ angular.module('train').controller "train", ($scope, storage)->
       newSpeed = if attemptedSpeed < 0 then (-1 * newSpeed) else newSpeed
 
     newSpeed
+
+  storage.on 'train.speed', (data) =>
+    console.log "SPEED UPDATE FROM SERVER!", data
+    $scope.$apply ->
+      $scope.speed = parseInt(data.speed)

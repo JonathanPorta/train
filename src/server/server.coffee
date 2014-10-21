@@ -1,4 +1,5 @@
-Train = require "./lib/Train"
+Train = require './lib/Train'
+Whistle = require './lib/Whistle'
 
 path = require "path"
 express = require "express"
@@ -8,6 +9,8 @@ root = path.join __dirname, "..", ".."
 port = process.env.PORT || 3000
 
 train = new Train
+whistle = new Whistle sound: path.join root, 'src/server/whistle.wav'
+whistle.blow()
 
 app = express()
 server = require('http').Server(app)
@@ -24,6 +27,10 @@ app.get '/', (req, res) ->
 io.on "connection", (socket) ->
   socket.emit 'server.connect',
     msg: 'welcome'
+
+  socket.on 'train.whistle', (data) =>
+    console.log "Train Whistle Received: ", data
+    whistle.blow()
 
   socket.on 'client.connect', (data) ->
     console.log "New client connection: ", data

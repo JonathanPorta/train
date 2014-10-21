@@ -1,29 +1,17 @@
 angular.module('train').directive "keyboard", ($templateCache, $filter)->
 		restrict: "E"
-		scope: {
+		scope:
 			onSpeedChange: '&'
 			accelerate: '='
 			decelerate: '='
 			brake: '='
+			whistle: '='
+			onWhistle: '&'
 			interval: '='
-			# initialSelection: "="
-			# onSpeedChange: "&"
-			# params: "@"
-			# onCreateNew: "&"
-			# parentSelection: "="
-		}
-		# templateUrl: "train/gears/widget"
 		replace: true
 		transclude: false # if true, the scope outside of of where directive is in DOM is accessible.
-		compile: (element, attributes, transclude)->
-			console.log "keyboard Directive - compile function"
-			##Compile
-			# listviewTemplate = attributes.listviewTemplate
-			# element.find(".list-body").before $templateCache.get listviewTemplate
-			# element.find(".list-body").detach()
-
-			(scope, instanceElement, instanceAttributes, ctrl, tc)->
-				##Link
+		compile: (element, attributes, transclude) ->
+			(scope, instanceElement, instanceAttributes, ctrl, tc) ->
 				jQuery(window).keydown (e) ->
 					keycode = e.which
 					console.log "KeyDown: #{ keycode }", e
@@ -39,7 +27,9 @@ angular.module('train').directive "keyboard", ($templateCache, $filter)->
 						e.preventDefault()
 						scope.onSpeedChange
 							amount: 0
+					else if keycode in scope.whistle
+						e.preventDefault()
+						scope.onWhistle()
 
 		controller: ($scope, storage, $filter)->
 			console.log "keyboard Directive - Controller Function"
-

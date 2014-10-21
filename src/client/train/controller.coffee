@@ -1,9 +1,10 @@
 angular.module('train').controller "train", ($scope, storage)->
 
   $scope.keys =
-    accelerate: [87, 38]
-    decelerate: [83, 40]
-    brake:      [32, 27]
+    accelerate: [87, 38] #w, up-arrow
+    decelerate: [83, 40] #s, down-arrow
+    brake:      [32, 27] #space, esc
+    whistle:    [72] #h
 
   $scope.interval = 1
   $scope.range = 10 # distance from 0 we are allowed to go. Omnidirectional.
@@ -17,6 +18,9 @@ angular.module('train').controller "train", ($scope, storage)->
     # Fire off an event to Node.js to let it know that the speed changed.
     storage.emit 'train.speed',
       speed: $scope.speed
+
+  $scope.onWhistle = ->
+    storage.emit 'train.whistle', {}
 
   $scope.onChange = (amount) ->
     # Sanitize input a bit.

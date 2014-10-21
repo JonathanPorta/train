@@ -2,7 +2,7 @@
   gears(speed='speed')
   speedometer(speed='speed')
   slider(speed='speed', on-speed-change="setSpeed(speed)", interval='interval')
-  keyboard(on-speed-change="onChange(amount)", accelerate='keys.accelerate', decelerate='keys.decelerate', brake='keys.brake', interval='interval')
+  keyboard(on-speed-change="onChange(amount)", accelerate='keys.accelerate', decelerate='keys.decelerate', brake='keys.brake', whistle='keys.whistle', on-whistle='onWhistle()', interval='interval')
 
 footer
   .container
